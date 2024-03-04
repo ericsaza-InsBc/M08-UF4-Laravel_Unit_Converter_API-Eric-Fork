@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ConvertVolumeController extends Controller
 {
-    public function __invoke(Request $request, $value, $unit)
+    public function __invoke($value, $unit)
     {
         if ($unit === 'liters') {
-            $result = $value * 0.264172; // Convert liters to US gallons
-            return response()->json(['result' => $result]);
+            $usGallons = round($value * 0.264172, 2); // Convert liters to US gallons
+            return response()->json(['usGallons' => $usGallons]);
         } elseif ($unit === 'usgallons') {
-            $result = $value / 0.264172; // Convert US gallons to liters
-            return response()->json(['result' => $result]);
+            $liters = round($value / 0.264172, 2); // Convert US gallons to liters
+            return response()->json(['liters' => $liters]);
         } else {
             return response()->json(['error' => 'Invalid unit.'], 400);
         }

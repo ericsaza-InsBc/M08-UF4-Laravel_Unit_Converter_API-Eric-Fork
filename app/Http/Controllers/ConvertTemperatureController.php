@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ConvertTemperatureController extends Controller
 {
-    public function __invoke(Request $request, $value, $unit)
+    public function __invoke($value, $unit)
     {
         if ($unit === 'celsius') {
-            $result = ($value * 9/5) + 32; // Convert Celsius to Fahrenheit
-            return response()->json(['result' => $result]);
+            $fahrenheit = round(($value * 9 / 5) + 32, 2); // Convert Celsius to Fahrenheit
+            return response()->json(['fahrenheit' => $fahrenheit]);
         } elseif ($unit === 'fahrenheit') {
-            $result = ($value - 32) * 5/9; // Convert Fahrenheit to Celsius
-            return response()->json(['result' => $result]);
+            $celsius = round(($value - 32) * 5 / 9, 2); // Convert Fahrenheit to Celsius
+            return response()->json(['celsius' => $celsius]);
         } else {
             return response()->json(['error' => 'Invalid unit.'], 400);
         }

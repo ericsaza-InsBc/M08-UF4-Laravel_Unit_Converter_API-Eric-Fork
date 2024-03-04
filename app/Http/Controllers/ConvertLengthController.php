@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ConvertLengthController extends Controller
 {
-    public function __invoke(Request $request, $value, $unit)
+    public function __invoke($value, $unit)
     {
         if ($unit === 'meters') {
-            $result = $value * 3.28084; // Convert meters to feet
-            return response()->json(['result' => $result]);
+            $feet = round($value * 3.28084, 2); // Convert meters to feet
+            return response()->json(['feet' => $feet]);
         } elseif ($unit === 'feet') {
-            $result = $value / 3.28084; // Convert feet to meters
-            return response()->json(['result' => $result]);
+            $meters = round($value / 3.28084, 2); // Convert feet to meters
+            return response()->json(['meters' => $meters]);
         } else {
             return response()->json(['error' => 'Invalid unit.'], 400);
         }

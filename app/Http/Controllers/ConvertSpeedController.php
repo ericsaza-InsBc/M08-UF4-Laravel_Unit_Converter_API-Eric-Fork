@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ConvertSpeedController extends Controller
 {
-    public function __invoke(Request $request, $value, $unit)
+    public function __invoke($value, $unit)
     {
         if ($unit === 'kmPerHour') {
-            $result = $value * 0.621371; // Convert kilometers per hour to miles per hour
-            return response()->json(['result' => $result]);
+            $milesPerHour = round($value * 0.621371, 2); // Convert kilometers per hour to miles per hour
+            return response()->json(['milesPerHour' => $milesPerHour]);
         } elseif ($unit === 'milesPerHour') {
-            $result = $value / 0.621371; // Convert miles per hour to kilometers per hour
-            return response()->json(['result' => $result]);
+            $kmPerHour = round($value / 0.621371, 2); // Convert miles per hour to kilometers per hour
+            return response()->json(['kmPerHour' => $kmPerHour]);
         } else {
             return response()->json(['error' => 'Invalid unit.'], 400);
         }

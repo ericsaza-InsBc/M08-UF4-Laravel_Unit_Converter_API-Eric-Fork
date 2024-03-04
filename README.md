@@ -21,7 +21,7 @@ This Laravel project provides an API for converting various units such as length
 
 ### ConvertSpeed
 
-- `kmPerHourToMilesPerHour($kilometersPerHour)`: Convert speed from kilometers per hour to miles per hour.
+- `kmPerHourToMilesPerHour($kmPerHour)`: Convert speed from kilometers per hour to miles per hour.
 - `milesPerHourToKmPerHour($milesPerHour)`: Convert speed from miles per hour to kilometers per hour.
 
 ## Controllers
