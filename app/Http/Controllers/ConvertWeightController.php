@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ConvertWeight;
 
 class ConvertWeightController extends Controller
 {
     public function __invoke(Request $request, $value, $unit)
     {
         if ($unit === 'kilograms') {
-            $result = ConvertWeight::kilogramsToPounds($value);
+            $result = $value * 2.20462; // Convert kilograms to pounds
             return response()->json(['result' => $result]);
         } elseif ($unit === 'pounds') {
-            $result = ConvertWeight::poundsToKilograms($value);
+            $result = $value / 2.20462; // Convert pounds to kilograms
             return response()->json(['result' => $result]);
         } else {
             return response()->json(['error' => 'Invalid unit.'], 400);
